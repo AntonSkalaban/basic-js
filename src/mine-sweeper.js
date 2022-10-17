@@ -23,10 +23,61 @@ const { NotImplementedError } = require('../extensions/index.js');
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+
+
+function minesweeper(matrix) {
+  let newArr = []
+  
+  matrix.forEach(el => {
+    el = el.map(el => el = 0)
+    newArr.push(el)
+  })
+
+  matrix.forEach((arr, arrIndex) => {
+    
+    arr.forEach((el,elIndex) => {
+
+      if(arr[elIndex+1] !== undefined && arr[elIndex+1] === true){
+        newArr[arrIndex][elIndex]++
+      }
+
+      if(arr[elIndex-1] !== undefined && arr[elIndex-1] === true ){
+        newArr[arrIndex][elIndex]++
+      }
+
+      if(matrix[arrIndex+1] !== undefined && matrix[arrIndex+1][elIndex] === true){
+
+        newArr[arrIndex][elIndex]++
+      }
+
+      if(matrix[arrIndex+1] !== undefined && matrix[arrIndex+1][elIndex-1] === true){
+        newArr[arrIndex][elIndex]++
+      }
+
+      if(matrix[arrIndex+1] !== undefined && matrix[arrIndex+1][elIndex+1] === true){
+        newArr[arrIndex][elIndex]++
+      }
+
+        
+      if(matrix[arrIndex-1] !== undefined && matrix[arrIndex-1][elIndex] === true){
+
+        newArr[arrIndex][elIndex]++
+      }
+
+      if(matrix[arrIndex-1] !== undefined && matrix[arrIndex-1][elIndex-1] === true){
+        newArr[arrIndex][elIndex]++
+      }
+
+      if(matrix[arrIndex-1] !== undefined && matrix[arrIndex-1][elIndex+1] === true){
+        newArr[arrIndex][elIndex]++
+      }
+
+    })
+  })
+
+  return newArr
 }
+
 
 module.exports = {
   minesweeper
